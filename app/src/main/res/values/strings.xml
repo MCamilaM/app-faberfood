@@ -1,3 +1,17 @@
 <resources>
-    <string name="app_name">faberfood</string>
+    <string name="app_name">faborfood</string>
+    <string name="confirmar_contrasena">Confirmar Contraseña</string>
+    <string name="nombres">Nombres</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="correo_electronico">Correo Electronico</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="no_tienes_una_cuenta_incribirse">No tienes una cuenta? Incribirse</string>
+    <string name="bienvenido">Bienvenido</string>
+    <string name="ingrese_a_su_cuenta">Ingrese a su cuenta</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="contrasena">Contraseña</string>
+    <string name="bienvenido_a_faborfood">Bienvenido a FaborFood</string>
+    <string name="correoelectronico">Correo Electronico</string>
+    <string name="registrese">Registrese</string>
+    <string name="tienes_cuenta_iniciar_sesion">tienes_cuenta?_iniciar sesion</string>
 </resources>
