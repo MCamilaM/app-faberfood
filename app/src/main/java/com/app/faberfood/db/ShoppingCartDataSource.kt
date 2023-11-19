@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import com.app.faberfood.db.DBHelper.Companion.SC_COLUMN_ID
 import com.app.faberfood.db.DBHelper.Companion.SC_COLUMN_PRODUCT_ID_FK
 import com.app.faberfood.db.DBHelper.Companion.SC_COLUMN_QUANTITY
+import com.app.faberfood.db.DBHelper.Companion.SC_TABLE_NAME
 import com.app.faberfood.entities.ItemShoppingCart
 import com.app.faberfood.entities.Product
 import com.app.faberfood.entities.User
@@ -14,22 +15,24 @@ import com.app.faberfood.entities.User
 class ShoppingCartDataSource(context: Context) {
 
     private val dbHelper: DBHelper = DBHelper(context)
-    private val database: SQLiteDatabase = dbHelper.writableDatabase
     private val productDataSource: ProductDataSource = ProductDataSource(context)
 
-    fun addProductToShoppingCart(user: User, product: Product): Long {
+    fun addProductToShoppingCart(product: Product): Long {
+        val database = dbHelper.writableDatabase
         val values = ContentValues()
         values.put(SC_COLUMN_PRODUCT_ID_FK, product.id)
         values.put(SC_COLUMN_QUANTITY, 1)
 
-        return database.insert(DBHelper.SC_TABLE_NAME, null, values)
+        val result = database.insert(DBHelper.SC_TABLE_NAME, null, values)
+        database.close()
+        return  result
     }
 
     @SuppressLint("Range")
-    fun getAllProductsOfShoppingCart(): List<ItemShoppingCart> {
+    fun getAllProducts(): List<ItemShoppingCart> {
         val itemList = mutableListOf<ItemShoppingCart>()
         val db = dbHelper.readableDatabase
-        val query = "SELECT * FROM $DBHelper.SC_TABLE_NAME"
+        val query = "SELECT * FROM $SC_TABLE_NAME"
         val cursor = db.rawQuery(query, null)
 
         while (cursor.moveToNext()) {
@@ -47,27 +50,45 @@ class ShoppingCartDataSource(context: Context) {
         return itemList
 
     }
-//
-//    fun actualizarCantidadProductoEnCarrito(id: Long, nuevaCantidad: Int): Int {
-//        val values = ContentValues()
-//        values.put(DBHelper.COLUMN_CANTIDAD, nuevaCantidad)
-//
-//        return database.update(
-//            DBHelper.TABLE_NAME_CARRITO,
-//            values,
-//            "${DBHelper.COLUMN_ID} = ?",
-//            arrayOf(id.toString())
-//        )
-//    }
-//
-//    fun eliminarProductoDelCarrito(id: Long): Int {
-//        return database.delete(
-//            DBHelper.TABLE_NAME_CARRITO,
-//            "${DBHelper.COLUMN_ID} = ?",
-//            arrayOf(id.toString())
-//        )
-//    }
 
+    fun updateProductQuantity(id: Int, nuevaCantidad: Int): Int {
+        val database = dbHelper.writableDatabase
+        val values = ContentValues()
+        values.put(SC_COLUMN_QUANTITY, nuevaCantidad)
+
+        val result = database.update(
+            SC_TABLE_NAME,
+            values,
+            "${SC_COLUMN_ID} = ?",
+            arrayOf(id.toString())
+        )
+        database.close()
+        return  result
+    }
+
+    fun deleteProduct(id: Int): Int {
+        val database = dbHelper.writableDatabase
+        val result = database.delete(
+            SC_TABLE_NAME,
+            "${SC_COLUMN_ID} = ?",
+            arrayOf(id.toString())
+        )
+        database.close()
+        return  result
+    }
+
+    fun getSubTotal(products: List<ItemShoppingCart>): Double{
+        val database = dbHelper.readableDatabase
+        var subTotal = 0.0
+
+        if(products.isNotEmpty()){
+            products.forEach{ item ->
+                subTotal += item.product.price * item.quantity
+            }
+        }
+        database.close()
+        return subTotal
+    }
 
 
 }

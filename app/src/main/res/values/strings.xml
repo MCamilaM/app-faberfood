@@ -14,4 +14,5 @@
     <string name="correoelectronico">Correo Electronico</string>
     <string name="registrese">Registrese</string>
     <string name="tienes_cuenta_iniciar_sesion">tienes_cuenta?_iniciar sesion</string>
+    <string name="title_activity_store_location">StoreLocationActivity</string>
 </resources>

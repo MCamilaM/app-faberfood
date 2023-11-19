@@ -1,63 +1,56 @@
 package com.app.faberfood
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.app.faberfood.adapters.ListProductsAdapter
 import com.app.faberfood.databinding.ActivityListProductsBinding
-import com.app.faberfood.db.DBHelper
 import com.app.faberfood.db.ProductDataSource
-import com.app.faberfood.db.ShoppingCartDataSource
-import com.app.faberfood.entities.Product
 
 class ListProductsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityListProductsBinding
-    private lateinit var recyclerView: RecyclerView
     private lateinit var productsDataSource: ProductDataSource
     private lateinit var listProductsAdapter: ListProductsAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListProductsBinding.inflate(layoutInflater)
-        setContentView(R.layout.activity_list_products)
+        setContentView(binding.root)
 
         productsDataSource = ProductDataSource(this)
 
-        insertProducts()
+        //insertDefaultProducts()
 
         listProductsAdapter = ListProductsAdapter(productsDataSource.getAllProducts(), this)
 
         binding.productsRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.productsRecyclerView.adapter = listProductsAdapter
 
+        binding.shoppingCartButton.setOnClickListener {
+            val intent = Intent(this, ShoppingCartActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
-    fun insertProducts() {
-        val product1 =
-            Product(
-                id = 1,
-                name = "Teléfono inteligente",
-                description = "Un teléfono inteligente de última generación",
-                price = 599.99,
-                category = "Electrónicos"
-            )
-        val product2 = Product(
-            id = 2,
-            name = "Laptop",
-            description = "Una potente laptop para trabajo y entretenimiento",
-            price = 1299.99,
-            category = "Electrónicos"
-        )
-        val product3 = Product(
-            id = 3,
-            name = "Auriculares inalámbricos",
-            description = "Auriculares Bluetooth con cancelación de ruido",
-            price = 129.99,
-            category = "Electrónicos"
-        )
-        productsDataSource.insertProduct(product1)
-        productsDataSource.insertProduct(product2)
-        productsDataSource.insertProduct(product3)
+    override fun onResume(){
+        super.onResume()
+        listProductsAdapter.refreshData(productsDataSource.getAllProducts())
+    }
+
+    fun insertDefaultProducts() {
+        val products = productsDataSource.getProductDefault()
+
+        products.forEach { product ->
+            val result = productsDataSource.insertProduct(product)
+
+            if (result != -1L) {
+                Toast.makeText(this, "Se inserto el producto \"${product.name}\" correctamente", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "ERROR - No se logró insertar el producto \"${product.name}\"", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

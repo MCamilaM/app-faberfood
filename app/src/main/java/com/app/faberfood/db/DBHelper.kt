@@ -18,6 +18,7 @@ class DBHelper(context: Context) :
         //Table Product
         const val PRODUCT_TABLE_NAME = "product"
         const val PRODUCT_COLUMN_ID = "id"
+        const val PRODUCT_COLUMN_IMAGE = "image"
         const val PRODUCT_COLUMN_NAME = "name"
         const val PRODUCT_COLUMN_DESCRIPTION = "description"
         const val PRODUCT_COLUMN_PRICE = "price"
@@ -30,15 +31,23 @@ class DBHelper(context: Context) :
         const val SC_COLUMN_QUANTITY = "quantity"
 
         //TODO(SQL statement to create the User table)
-        private const val USER_SQL_CREATE_TABLE =
+        private const val SQL_CREATE_USER_TABLE =
             "CREATE TABLE $USER_TABLE_NAME ($USER_COLUMN_ID INTEGER PRIMARY KEY)"
 
-        //TODO(SQL statement to create the Product table)
-        private const val PRODUCT_SQL_CREATE_TABLE =
-            "CREATE TABLE $PRODUCT_TABLE_NAME ($PRODUCT_COLUMN_ID INTEGER PRIMARY KEY)"
+        const val SQL_CREATE_PRODUCT_TABLE = """
+            CREATE TABLE IF NOT EXISTS $PRODUCT_TABLE_NAME (
+            $PRODUCT_COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT,
+            $PRODUCT_COLUMN_IMAGE TEXT,
+            $PRODUCT_COLUMN_NAME TEXT,
+            $PRODUCT_COLUMN_DESCRIPTION TEXT,
+            $PRODUCT_COLUMN_PRICE REAL,
+            $PRODUCT_COLUMN_CATEGORY TEXT
+            )
+        """
+
 
         // SQL statement to create the Shopping Cart table
-        private const val SC_SQL_CREATE_TABLE =
+        private const val SQL_CREATE_SC_TABLE =
             "CREATE TABLE $SC_TABLE_NAME ($SC_COLUMN_ID INTEGER PRIMARY KEY, " +
                     "$SC_COLUMN_PRODUCT_ID_FK INTEGER, " +
                     "$SC_COLUMN_QUANTITY INTEGER, " +
@@ -47,9 +56,9 @@ class DBHelper(context: Context) :
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL(USER_SQL_CREATE_TABLE)
-        db?.execSQL(PRODUCT_SQL_CREATE_TABLE)
-        db?.execSQL(SC_SQL_CREATE_TABLE)
+        db?.execSQL(SQL_CREATE_USER_TABLE)
+        db?.execSQL(SQL_CREATE_PRODUCT_TABLE)
+        db?.execSQL(SQL_CREATE_SC_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, p1: Int, p2: Int) {
