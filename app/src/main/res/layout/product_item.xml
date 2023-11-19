@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="5dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
@@ -13,12 +16,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="5dp">
 
         <ImageView
-            android:id="@+id/imageProductCart"
-            android:layout_width="wrap_content"
-            android:layout_height="98dp"
+            android:id="@+id/imageProduct"
+            android:layout_width="98dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:srcCompat="@mipmap/pizza" />
 
         <LinearLayout
@@ -31,7 +36,6 @@
                 android:id="@+id/titleItemProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins"
@@ -39,33 +43,32 @@
                 android:textSize="15dp" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/descriptionProduct"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="16dp"
+                android:paddingRight="5dp"
                 android:fontFamily="@font/poppins"
-                android:text="Descriptión" />
+                android:text="Hamburguesa con carne a la parrilla, queso fundido, lechuga fresca y tomate." />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="8dp">
+                android:paddingTop="8dp"
+                android:paddingBottom="10dp">
 
                 <TextView
                     android:id="@+id/priceProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="$0"
                     android:textSize="17dp"
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/addQuantityButton"
+                    android:id="@+id/addProductButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -78,4 +81,4 @@
         </LinearLayout>
 
     </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

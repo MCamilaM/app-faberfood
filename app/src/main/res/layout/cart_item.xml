@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="2dp"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
@@ -12,12 +15,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="5dp">
 
         <ImageView
             android:id="@+id/imageProductCart"
-            android:layout_width="wrap_content"
+            android:layout_width="98dp"
             android:layout_height="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             app:srcCompat="@mipmap/pizza" />
 
         <LinearLayout
@@ -27,7 +32,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/titleItemProduct"
+                android:id="@+id/titleProductCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -35,10 +40,10 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins"
                 android:text="Title"
-                android:textSize="15dp" />
+                android:textSize="18dp" />
 
             <TextView
-                android:id="@+id/priceProduct"
+                android:id="@+id/priceProductCart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -51,10 +56,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingTop="8dp">
+                android:paddingTop="8dp"
+                android:paddingBottom="10dp">
 
                 <ImageView
-                    android:id="@+id/addQuantityButton"
+                    android:id="@+id/addQuantityCartButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -73,7 +79,7 @@
                     android:textStyle="bold" />
 
                 <ImageView
-                    android:id="@+id/removeQuantityButton"
+                    android:id="@+id/removeQuantityCartButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
@@ -82,7 +88,7 @@
                     android:src="@drawable/baseline_remove_circle_outline_24" />
 
                 <ImageView
-                    android:id="@+id/deleteItemButton"
+                    android:id="@+id/deleteProductCartButton"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_marginEnd="16dp"

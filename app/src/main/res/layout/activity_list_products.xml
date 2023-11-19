@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,11 +18,11 @@
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
-            android:id="@+id/backArrow"
+            android:id="@+id/locationStores"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="back"
-            android:src="@drawable/baseline_arrow_back_ios_24" />
+            android:src="@drawable/baseline_store_24" />
 
         <TextView
             android:id="@+id/textView"
@@ -38,7 +39,7 @@
             tools:layout_editor_absoluteY="-331dp" />
 
         <ImageView
-            android:id="@+id/shoppingcart"
+            android:id="@+id/shoppingCartButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="back"
@@ -51,7 +52,8 @@
         android:layout_height="723dp"
         android:orientation="vertical"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="0dp"
+        tools:ignore="MissingConstraints">
 
         <TextView
             android:id="@+id/textView6"
@@ -65,38 +67,19 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:padding="5dp"
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productsRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="16dp"
-                    android:orientation="vertical"/>
-
-                <Button
-                    android:id="@+id/buttonCheckout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bottom_border"
-                    android:text="Ver más"
-                    android:textAllCaps="false"
-                    android:textColor="@color/brown"
-                    android:textSize="17dp"
-                    android:textStyle="bold" />
-
-
             </LinearLayout>
-
-
         </ScrollView>
     </LinearLayout>
 
