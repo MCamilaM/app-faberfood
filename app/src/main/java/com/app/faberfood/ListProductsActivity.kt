@@ -21,7 +21,7 @@ class ListProductsActivity : AppCompatActivity() {
 
         productsDataSource = ProductDataSource(this)
 
-        //insertDefaultProducts()
+        insertDefaultProducts()
 
         listProductsAdapter = ListProductsAdapter(productsDataSource.getAllProducts(), this)
 
@@ -32,10 +32,13 @@ class ListProductsActivity : AppCompatActivity() {
             val intent = Intent(this, ShoppingCartActivity::class.java)
             startActivity(intent)
         }
-
+        binding.locationStores.setOnClickListener {
+            val intent = Intent(this, StoreLocationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
-    override fun onResume(){
+    override fun onResume() {
         super.onResume()
         listProductsAdapter.refreshData(productsDataSource.getAllProducts())
     }
@@ -47,9 +50,17 @@ class ListProductsActivity : AppCompatActivity() {
             val result = productsDataSource.insertProduct(product)
 
             if (result != -1L) {
-                Toast.makeText(this, "Se inserto el producto \"${product.name}\" correctamente", Toast.LENGTH_SHORT).show()
+                /*Toast.makeText(
+                    this,
+                    "Se inserto el producto \"${product.name}\" correctamente",
+                    Toast.LENGTH_SHORT
+                ).show()*/
             } else {
-                Toast.makeText(this, "ERROR - No se logró insertar el producto \"${product.name}\"", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    this,
+                    "ERROR - No se logró insertar el producto \"${product.name}\"",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
