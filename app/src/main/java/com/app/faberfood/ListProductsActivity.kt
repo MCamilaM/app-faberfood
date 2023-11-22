@@ -21,7 +21,7 @@ class ListProductsActivity : AppCompatActivity() {
 
         productsDataSource = ProductDataSource(this)
 
-        insertDefaultProducts()
+//        insertDefaultProducts()
 
         listProductsAdapter = ListProductsAdapter(productsDataSource.getAllProducts(), this)
 

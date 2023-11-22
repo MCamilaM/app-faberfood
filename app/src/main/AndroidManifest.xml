@@ -26,41 +26,35 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key"/>
+            android:value="@string/google_maps_key" />
 
         <activity
             android:name=".StoreLocationActivity"
             android:exported="false"
-            android:label="@string/title_activity_store_location"/>
+            android:label="@string/title_activity_store_location" />
         <activity
             android:name=".ListProductsActivity"
-            android:exported="false">
+            android:exported="false"></activity>
 
-        </activity>
         <activity
             android:name=".ShoppingCartActivity"
             android:exported="false" />
         <activity
-        android:name=".LoginActivity"
+            android:name=".LoginActivity"
             android:exported="true">
-        <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
-        <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-<!--        <activity-->
-<!--            android:name=".LoginActivity"-->
-<!--            android:exported="false" />-->
 
         <activity
             android:name=".SignupActivity"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".ShoppingCartActivity" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>
