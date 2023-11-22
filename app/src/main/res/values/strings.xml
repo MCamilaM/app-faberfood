@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">faborfood</string>
+    <string name="app_name">FaborFood</string>
     <string name="confirmar_contrasena">Confirmar Contraseña</string>
     <string name="correo_electronico">Correo Electronico</string>
     <string name="ingresar">Ingresar</string>
