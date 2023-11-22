@@ -6,4 +6,13 @@ data class User(
     val lastname: String,
     val email: String,
     val password: String
-)
+){
+    fun toMap():MutableMap<String, Any>{
+        return mutableMapOf(
+//            "user_id" to this.userId,
+            "name" to this.name,
+            "lastname" to this.lastname
+        )
+
+    }
+}
